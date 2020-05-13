@@ -1,23 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Gmap from "../views/Gmap.vue";
+import FullInfo from "@/components/FullInfo.vue";
+import Countries from "@/components/Countries.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Gmap",
+    component: Gmap,
+    beforeEnter: (to, from, next) => {
+      next({ name: "FullInfo" });
+    }
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/Full-info",
+    name: "FullInfo",
+    component: FullInfo
+  },
+  {
+    path: "/Countries",
+    name: "Countries",
+    component: Countries
   }
 ];
 
